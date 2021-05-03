@@ -12,6 +12,7 @@ $services = $mysqli->query("select * from services s  left join
   <div class="HomeScreenPhrases">
     <div class="container text-center">
       <h1  style="font-size:3vw;"></h1>
+        <h1></h1>
     </div>
 
   </div>
