@@ -16,8 +16,8 @@ if (count($settings)) {
     'admin_email' => $admin_email,
     'lang' => 'ar',
     'dir' => 'rtl',
-    'app_url' => 'http://127.0.0.1/SaraSalon/',
-    'admin_assets' => 'http://127.0.0.1/SaraSalon/admin/template/BS3/assets'
+    'app_url' => 'https://abdulazizmualla.github.io/Sarasalon/',
+    'admin_assets' => 'https://abdulazizmualla.github.io/Sarasalon/admin/template/BS3/assets'
 
   ];
 
