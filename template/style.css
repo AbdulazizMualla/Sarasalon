@@ -9,12 +9,12 @@
  margin: auto;
 }
 .my-navbar{
-  /* width: 100%;
+   width: 100%;
   position: absolute!important;
   z-index: 9000;
   top: 0;
   margin: auto;
-  background: rgba(255, 255, 255,0.8)!important; */
+  background: rgba(255, 255, 255,0.8)!important;
 }
 .loader_bg{
   position: fixed;
