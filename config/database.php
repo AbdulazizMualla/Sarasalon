@@ -1,8 +1,8 @@
 <?php
   $connection = [
         'host' => 'localhost',
-        'username' => 'root',
-        'password' => '',
+        'username' => 'azooz77758',
+        'password' => '11111111',
         'database' => 'dataSalonSara'
   ];
 
