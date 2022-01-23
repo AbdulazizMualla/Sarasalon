@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group">
               <!-- <label for="captch_code">Code</label> -->
               <span class="input-group" style="padding:0">
-                <img class="input-group"src="includes/image.php" id="captch_image" alt="">
+                <img class="input-group"src="/includes/image.php" id="captch_image" alt="">
               </span>
             </div>
 
