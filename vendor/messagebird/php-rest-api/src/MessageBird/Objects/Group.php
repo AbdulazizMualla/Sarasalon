@@ -37,7 +37,7 @@ class Group extends Base
      *
      * @var array
      */
-    protected $contacts = array ();
+    protected $contacts =  [];
 
     /**
      * The date and time of the creation of the group in RFC3339 format (Y-m-d\TH:i:sP)
@@ -94,7 +94,7 @@ class Group extends Base
     }
 
     /**
-     * @param $object
+     * @param mixed $object
      *
      * @return $this|void
      */
@@ -104,10 +104,10 @@ class Group extends Base
 
         if (!empty($object->items)) {
             foreach($object->items AS &$item) {
-                $Contact = new Contact();
-                $Contact->loadFromArray($item);
+                $contact = new Contact();
+                $contact->loadFromArray($item);
 
-                $item = $Contact;
+                $item = $contact;
             }
         }
 

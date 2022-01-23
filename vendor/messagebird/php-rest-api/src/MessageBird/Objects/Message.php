@@ -95,7 +95,7 @@ class Message extends Base
      *
      * @var array
      */
-    public $typeDetails = array ();
+    public $typeDetails =  [];
 
     /**
      * The datacoding used, can be plain or unicode
@@ -129,7 +129,7 @@ class Message extends Base
      *
      * @var array
      */
-    public $recipients = array ();
+    public $recipients =  [];
 
     /**
      * The URL to send status delivery reports for the message to
@@ -142,21 +142,21 @@ class Message extends Base
     /**
      * Send a premium SMS
      *
-     * @param $shortcode
-     * @param $keyword
-     * @param $tariff
-     * @param $mid
-     * @param $member
+     * @param mixed $shortcode
+     * @param mixed $keyword
+     * @param mixed $tariff
+     * @param mixed $mid
+     * @param mixed $member
      */
     public function setPremiumSms($shortcode, $keyword, $tariff, $mid = null, $member = null)
     {
         $this->typeDetails['shortcode'] = $shortcode;
         $this->typeDetails['keyword']   = $keyword;
         $this->typeDetails['tariff']    = $tariff;
-        if ($mid != null) {
+        if ($mid !== null) {
             $this->typeDetails['mid'] = $mid;
         }
-        if ($member != null) {
+        if ($member !== null) {
             $this->typeDetails['member'] = $member;
         }
 
@@ -164,8 +164,8 @@ class Message extends Base
     }
 
     /**
-     * @param $header
-     * @param $body
+     * @param mixed $header
+     * @param mixed $body
      */
     public function setBinarySms($header, $body)
     {
@@ -175,7 +175,7 @@ class Message extends Base
     }
 
     /**
-     * @param $bool
+     * @param mixed $bool
      */
     public function setFlash($bool)
     {
@@ -217,7 +217,7 @@ class Message extends Base
     }
 
     /**
-     * @param $object
+     * @param mixed $object
      *
      * @return $this|void
      */
@@ -227,10 +227,10 @@ class Message extends Base
 
         if (!empty($this->recipients->items)) {
             foreach($this->recipients->items AS &$item) {
-                $Recipient = new Recipient();
-                $Recipient->loadFromArray($item);
+                $recipient = new Recipient();
+                $recipient->loadFromArray($item);
 
-                $item = $Recipient;
+                $item = $recipient;
             }
         }
 

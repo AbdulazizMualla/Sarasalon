@@ -49,7 +49,7 @@ class RequestValidator
 
     private function buildPayloadFromRequest(SignedRequest $request)
     {
-        $parts = array();
+        $parts = [];
 
         // Add request timestamp
         $parts[] = $request->requestTimestamp;
@@ -74,6 +74,6 @@ class RequestValidator
      */
     public function isRecent(SignedRequest $request, $offset = 10)
     {
-        return (\time() - $request->requestTimestamp) < $offset;
+        return (\time() - (int) $request->requestTimestamp) < $offset;
     }
 }

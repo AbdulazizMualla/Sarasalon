@@ -107,7 +107,7 @@ class VoiceMessage extends Base
      *
      * @var array
      */
-    public $recipients = array ();
+    public $recipients =  [];
 
     /**
      * The URL to send status delivery reports for the voice message to
@@ -147,7 +147,7 @@ class VoiceMessage extends Base
     }
 
     /**
-     * @param $object
+     * @param mixed $object
      *
      * @return $this|void
      */
@@ -157,10 +157,10 @@ class VoiceMessage extends Base
 
         if (!empty($this->recipients->items)) {
             foreach($this->recipients->items AS &$item) {
-                $Recipient = new Recipient();
-                $Recipient->loadFromArray($item);
+                $recipient = new Recipient();
+                $recipient->loadFromArray($item);
 
-                $item = $Recipient;
+                $item = $recipient;
             }
         }
 

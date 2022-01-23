@@ -47,7 +47,7 @@ class MmsMessage extends Base {
      *
      * @var array
      */
-    public $recipients = array();
+    public $recipients = [];
 
     /**
      * The subject of MMS the message.
@@ -69,7 +69,7 @@ class MmsMessage extends Base {
      *
      * @var array
      */
-    public $mediaUrls = array();
+    public $mediaUrls = [];
 
     /**
      * A client reference.
@@ -120,7 +120,7 @@ class MmsMessage extends Base {
     }
 
     /**
-     * @param $object
+     * @param mixed $object
      *
      * @return $this|void
      */
@@ -130,10 +130,10 @@ class MmsMessage extends Base {
 
         if (!empty($this->recipients->items)) {
             foreach($this->recipients->items as &$item) {
-                $Recipient = new Recipient();
-                $Recipient->loadFromArray($item);
+                $recipient = new Recipient();
+                $recipient->loadFromArray($item);
 
-                $item = $Recipient;
+                $item = $recipient;
             }
         }
 

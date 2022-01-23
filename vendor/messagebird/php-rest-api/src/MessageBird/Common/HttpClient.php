@@ -28,12 +28,12 @@ class HttpClient
     /**
      * @var array
      */
-    protected $userAgent = array();
+    protected $userAgent = [];
 
     /**
      * @var Common\Authentication
      */
-    protected $Authentication;
+    protected $authentication;
 
     /**
      * @var int
@@ -48,12 +48,12 @@ class HttpClient
     /**
      * @var array
      */
-    private $headers = array();
+    private $headers = [];
 
     /**
      * @var array
      */
-    private $httpOptions = array();
+    private $httpOptions = [];
 
     /**
      * @param string $endpoint
@@ -61,7 +61,7 @@ class HttpClient
      * @param int    $connectionTimeout >= 0
      * @param array  $headers
      */
-    public function __construct($endpoint, $timeout = 10, $connectionTimeout = 2, $headers = array())
+    public function __construct($endpoint, $timeout = 10, $connectionTimeout = 2, $headers = [])
     {
         $this->endpoint = $endpoint;
 
@@ -94,11 +94,11 @@ class HttpClient
     }
 
     /**
-     * @param Common\Authentication $Authentication
+     * @param Common\Authentication $authentication
      */
-    public function setAuthentication(Common\Authentication $Authentication)
+    public function setAuthentication(Common\Authentication $authentication)
     {
-        $this->Authentication = $Authentication;
+        $this->authentication = $authentication;
     }
 
     /**
@@ -129,8 +129,8 @@ class HttpClient
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param mixed $option
+     * @param mixed $value
      */
     public function addHttpOption($option, $value)
     {
@@ -138,12 +138,12 @@ class HttpClient
     }
 
     /**
-     * @param $option
+     * @param mixed $option
      * @return mixed|null
      */
     public function getHttpOption($option)
     {
-        return isset($this->httpOptions[$option]) ? $this->httpOptions[$option] : null;
+        return $this->httpOptions[$option] ?? null;
     }
 
     /**
@@ -161,17 +161,17 @@ class HttpClient
     {
         $curl = curl_init();
 
-        if ($this->Authentication === null) {
+        if ($this->authentication === null) {
             throw new Exceptions\AuthenticateException('Can not perform API Request without Authentication');
         }
 
-        $headers = array (
+        $headers =  [
             'User-agent: ' . implode(' ', $this->userAgent),
             'Accept: application/json',
             'Content-Type: application/json',
             'Accept-Charset: utf-8',
-            sprintf('Authorization: AccessKey %s', $this->Authentication->accessKey)
-        );
+            sprintf('Authorization: AccessKey %s', $this->authentication->accessKey)
+        ];
 
         $headers = array_merge($headers, $this->headers);
 
@@ -220,11 +220,11 @@ class HttpClient
         // Split the header and body
         $parts = explode("\r\n\r\n", $response, 3);
         $isThreePartResponse = (strpos($parts[0], "\n") === false && strpos($parts[0], 'HTTP/1.') === 0);
-        list($responseHeader, $responseBody) = $isThreePartResponse ? array ($parts[1], $parts[2]) : array ($parts[0], $parts[1]);
+        list($responseHeader, $responseBody) = $isThreePartResponse ?  [$parts[1], $parts[2]] :  [$parts[0], $parts[1]];
 
         curl_close($curl);
 
-        return array ($responseStatus, $responseHeader, $responseBody);
+        return  [$responseStatus, $responseHeader, $responseBody];
     }
 
     /**

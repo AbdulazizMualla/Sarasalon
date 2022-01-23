@@ -13,9 +13,9 @@ use MessageBird\Objects\Voice\BaseList;
  */
 class Base extends \MessageBird\Resources\Base
 {
-    public function getList($parameters = array())
+    public function getList($parameters = [])
     {
-        list($status, , $body) = $this->HttpClient->performHttpRequest(
+        list($status, , $body) = $this->httpClient->performHttpRequest(
             Common\HttpClient::REQUEST_GET,
             $this->resourceName,
             $parameters
@@ -31,13 +31,13 @@ class Base extends \MessageBird\Resources\Base
                 $baseList->loadFromArray($body->pagination);
             }
 
-            $objectName = $this->Object;
+            $objectName = $this->object;
 
             foreach ($data as $item) {
-                $itemObject = new $objectName($this->HttpClient);
+                $itemObject = new $objectName($this->httpClient);
 
-                $Message = $itemObject->loadFromArray($item);
-                $baseList->items[] = $Message;
+                $message = $itemObject->loadFromArray($item);
+                $baseList->items[] = $message;
             }
             return $baseList;
         }
@@ -52,15 +52,15 @@ class Base extends \MessageBird\Resources\Base
     {
         $body = @json_decode($body);
 
-        if ($body === null or $body === false) {
+        if ($body === null || $body === false) {
             throw new Exceptions\ServerException('Got an invalid JSON response from the server.');
         }
 
         if (empty($body->errors)) {
-            return $this->Object->loadFromArray($body->data[0]);
+            return $this->object->loadFromArray($body->data[0]);
         }
 
-        $ResponseError = new Common\ResponseError($body);
-        throw new Exceptions\RequestException($ResponseError->getErrorString());
+        $responseError = new Common\ResponseError($body);
+        throw new Exceptions\RequestException($responseError->getErrorString());
     }
 }

@@ -51,7 +51,7 @@ class Contact extends Base
      *
      * @var array
      */
-    protected $customDetails = array();
+    protected $customDetails = [];
 
     /**
      * @var string
@@ -78,14 +78,14 @@ class Contact extends Base
      *
      * @var array
      */
-    protected $groups = array();
+    protected $groups = [];
 
     /**
      * The hash with messages sent to contact.
      *
      * @var array
      */
-    protected $messages = array();
+    protected $messages = [];
 
     /**
      * The date and time of the creation of the contact in RFC3339 format (Y-m-d\TH:i:sP)
@@ -158,7 +158,7 @@ class Contact extends Base
     }
 
     /**
-     * @param $object
+     * @param mixed $object
      *
      * @return $this
      */
@@ -170,9 +170,9 @@ class Contact extends Base
     }
 
     /**
-     * @param $object
+     * @param mixed $object
      *
-     * @return $this ->Object
+     * @return $this ->object
      */
     public function loadFromArrayForGroups($object)
     {
@@ -180,10 +180,10 @@ class Contact extends Base
 
         if (!empty($object->items)) {
             foreach($object->items AS &$item) {
-                $Group = new Group();
-                $Group->loadFromArray($item);
+                $group = new Group();
+                $group->loadFromArray($item);
 
-                $item = $Group;
+                $item = $group;
             }
         }
         return $object;

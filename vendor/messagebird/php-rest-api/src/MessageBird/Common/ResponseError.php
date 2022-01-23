@@ -26,13 +26,13 @@ class ResponseError
 
     const CHAT_API_AUTH_ERROR = 1001;
 
-    public $errors = array();
+    public $errors = [];
 
     /**
      * Load the error data into an array.
      * Throw an exception when important errors are found.
      *
-     * @param $body
+     * @param mixed $body
      *
      * @throws Exceptions\AuthenticateException
      * @throws Exceptions\BalanceException
@@ -64,7 +64,7 @@ class ResponseError
     /**
      * Get the exception message for the provided error.
      *
-     * @param $error
+     * @param mixed $error
      *
      * @return string
      */
@@ -80,7 +80,7 @@ class ResponseError
      */
     public function getErrorString()
     {
-        $errorDescriptions = array();
+        $errorDescriptions = [];
 
         foreach ($this->errors AS $error) {
             $errorDescriptions[] = $error->description;

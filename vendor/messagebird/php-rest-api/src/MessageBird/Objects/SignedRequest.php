@@ -32,7 +32,7 @@ class SignedRequest extends Base
      *
      * @var array
      */
-    public $queryParameters = array();
+    public $queryParameters = [];
 
     /**
      * The signature passed in the MessageBird-Signature header of the request.
@@ -53,8 +53,7 @@ class SignedRequest extends Base
         $queryParameters = $_GET;
         $requestTimestamp = isset($_SERVER['HTTP_MESSAGEBIRD_REQUEST_TIMESTAMP']) ?
             (int)$_SERVER['HTTP_MESSAGEBIRD_REQUEST_TIMESTAMP'] : null;
-        $signature = isset($_SERVER['HTTP_MESSAGEBIRD_SIGNATURE']) ?
-            $_SERVER['HTTP_MESSAGEBIRD_SIGNATURE'] : null;
+        $signature = $_SERVER['HTTP_MESSAGEBIRD_SIGNATURE'] ?? null;
 
         $signedRequest = new SignedRequest();
         $signedRequest->loadFromArray(compact('body', 'queryParameters', 'requestTimestamp', 'signature'));
@@ -75,7 +74,7 @@ class SignedRequest extends Base
     public static function create($query, $signature, $requestTimestamp, $body)
     {
         if (is_string($query)) {
-            $queryParameters = array();
+            $queryParameters = [];
             parse_str($query, $queryParameters);
         } else {
             $queryParameters = $query;

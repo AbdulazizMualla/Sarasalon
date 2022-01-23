@@ -9,7 +9,6 @@ use MessageBird\Exceptions\RequestException;
 use MessageBird\Exceptions\ServerException;
 use MessageBird\Objects\BaseList;
 use MessageBird\Objects\Conversation\Message;
-use MessageBird\Resources\Base;
 
 /**
  * Messages does not extend Base because PHP won't let us add parameters to the
@@ -92,7 +91,7 @@ class Messages
      * @param string $conversationId
      * @param string[] $parameters
      */
-    public function getList($conversationId, $parameters = array())
+    public function getList($conversationId, $parameters = [])
     {
         list($status, , $body) = $this->httpClient->performHttpRequest(
             HttpClient::REQUEST_GET,
@@ -124,7 +123,7 @@ class Messages
         return $this->processRequest($body);
     }
 
-    public function read($messageId, $parameters = array()) {
+    public function read($messageId, $parameters = []) {
         list($status, , $body) = $this->httpClient->performHttpRequest(
             HttpClient::REQUEST_GET,
             sprintf(self::MESSAGE_RESOURCE_NAME, $messageId),
@@ -173,7 +172,7 @@ class Messages
     {
         $body = @json_decode($body);
 
-        if ($body === null or $body === false) {
+        if ($body === null || $body === false) {
             throw new ServerException('Got an invalid JSON response from the server.');
         }
 
