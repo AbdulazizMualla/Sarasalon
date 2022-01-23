@@ -7,7 +7,7 @@ $captcha_code = substr($random_alpha, 0 , 6);
 
 $_SESSION['captch_code'] = $captcha_code;
 
-header('Content-Type: image/png');
+//header('Content-Type: image/png');
 
 $image = imagecreatetruecolor(200,38);
 
