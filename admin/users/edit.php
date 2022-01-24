@@ -13,7 +13,7 @@ $userId = $_GET['id'];
 $statement->execute();
 
 $user = $statement->get_result()->fetch_assoc();
-print_r($user);
+
 $name = $user['user_name'];
 $email = $user['email'];
 $role = $user['role'];
