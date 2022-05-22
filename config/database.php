@@ -1,9 +1,9 @@
 <?php
   $connection = [
         'host' => 'localhost',
-        'username' => 'azooz77758',
-        'password' => '11111111',
-        'database' => 'dataSalonSara'
+        'username' => '',
+        'password' => '',
+        'database' => ''
   ];
 
   $mysqli = new mysqli(
